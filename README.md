@@ -105,6 +105,7 @@ A couple of sample endpoints are provided in this `docker-compose` example:
 
 
 #### Standalone Build (without compose)
+```
 sudo docker network create app-net
 
 sudo docker build -t app . -f flask/Dockerfile_standalone_build
@@ -114,5 +115,7 @@ sudo docker run --name app --rm -d -p 8000:8000 --network app-net app
 sudo docker build -t nginx-proxy . -f nginx/Dockerfile_standalone_build
 sudo docker run --name web --rm -d -p 80:80 --network app-net nginx-proxy
 
-
 sudo docker compose -f compose-standalone-build.yaml up -d
+
+sudo docker compose -f compose-standalone-build.yaml down
+```
