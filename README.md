@@ -102,20 +102,3 @@ A couple of sample endpoints are provided in this `docker-compose` example:
 * `/` - Returns a "Hello World!" string.
 * `/cache-me` - Returns a string which is cached by the NGINX reverse proxy. This demonstrates an intermediary cache implementation.
 * `/info` - Returns informational headers about the request. Some are passed from NGINX for added client visibility.
-
-
-#### Standalone Build (without compose)
-```
-sudo docker network create app-net
-
-sudo docker build -t app . -f flask/Dockerfile_standalone_build
-sudo docker run --name app --rm -d -p 8000:8000 --network app-net app
-
-
-sudo docker build -t nginx-proxy . -f nginx/Dockerfile_standalone_build
-sudo docker run --name web --rm -d -p 80:80 --network app-net nginx-proxy
-
-sudo docker compose -f compose-standalone-build.yaml up -d
-
-sudo docker compose -f compose-standalone-build.yaml down
-```
